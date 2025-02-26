@@ -1,64 +1,68 @@
 ## Classification
 ### Machine learning with scikit-learn
-- **Machine learning** is when computers learn to make decisions from data without explicit programming.
-- **Supervised learning** involves predicting values using a model built on known values, utilizing features to predict a target variable.
-- **Types of supervised learning:**
-    - **Classification:** Predicts the label or category of an observation (e.g., whether a bank transaction is fraudulent). Binary classification involves two outcomes.
-    - **Regression:** Predicts continuous values (e.g., property price based on features like bedrooms and size).
-- **Naming conventions:**
-    - Features are also known as predictor variables or independent variables.
-    - Target variables are also known as dependent variables or response variables.
-- **Requirements before using supervised learning:** Data must not have missing values, must be in numeric format, and stored as pandas DataFrames or Series, or NumPy arrays. Exploratory data analysis is required.
-- **scikit-learn syntax** for supervised learning models is consistent, making the workflow repeatable.
-    - Import a Model (algorithm) from an sklearn module (e.g., k-Nearest Neighbors).
-    - Instantiate the Model.
-    - Fit the model to the data (X for features, y for the target variable).
-    - Use the model's dot-predict method, passing new observations (X_new).
-```
-    - from sklearn.module import Model
-    - model = Model()
-    - model.fit(X,y)
-    - predictions = model.predict(X_new)
-    - print(predictions)
-```
 
-### The classification challenge
-- Supervised learning uses labels.
-- Goal: Build a classification model to predict labels for unseen data.
-- **Classifying labels of unseen data**
-    - Four steps in classification:
-        1. Build a classifier that learns from labeled data.
-        2. Pass unlabeled data as input.
-        3. Predict labels for unseen data.
-        4. Labeled data used for learning is called training data.
-- **k-Nearest Neighbors (KNN) Algorithm**
-    - KNN predicts labels based on the k closest labeled data points.
-    - Uses majority voting to assign a label to the unlabeled observation.
-    - Example: If k = 3, the prediction is based on the majority label among the three nearest neighbors. 
-    - 
-- **KNN Classification Examples**
-    - If k = 3, the black observation is classified as red (majority of three neighbors).
-    - If k = 5, it is classified as blue.
-- **KNN Intuition**!
-    - Scatter plot example: Total evening charge vs. total day charge for telecom customers.
-    - Observations are color-coded:
-        - Blue = churned customers.
-        - Red = non-churned customers.
-    - KNN with k = 15 creates a decision boundary:
-        - Gray background = predicted churn.
-        - Red background = predicted no churn.
-- **Using scikit-learn to fit a KNN classifier**
-    - Import `KNeighborsClassifier` from `sklearn.neighbors`.
-    - Split data into:
-        - `X`: 2D array of feature values.
-        - `y`: 1D array of target values (churn status).
-    - Convert `X` and `y` to NumPy arrays using `.values`.
-    - Example dataset: 3333 observations, two features, and corresponding target labels.
-    - Instantiate `KNeighborsClassifier` with `n_neighbors = 15`.
-    - Fit classifier using `.fit(X, y)`.
-- **Predicting on unlabeled data**
-    - New dataset `X_new`: 3 observations, 2 features.
-    - Use `.predict(X_new)` to classify unseen data.
-    - Predictions:
-        - First observation → 1 (churn).
-        - Second and third observations → 0 (no churn).
+#### 1. What is Machine Learning?
+
+- Process where computers learn to make decisions from data without explicit programming.
+
+#### 2. Examples of Machine Learning
+
+- **Spam classification:** Predicting whether an email is spam or not based on content and sender.
+- **Book categorization:** Clustering books into categories based on their content.
+
+#### 3. Unsupervised Learning
+
+- Uncovering hidden patterns and structures from **unlabeled data**.
+- Example: **Customer segmentation**
+    - Businesses group customers into categories based on purchasing behavior (clustering).
+
+#### 4. Supervised Learning
+
+- Predicting values where the **true values** are already known.
+- Uses **features** to predict a **target variable**.
+- Example: Predicting a basketball player's position based on points per game.
+- **This course focuses on supervised learning.**
+
+#### 5. Types of Supervised Learning
+
+- **Classification:** Predicts a categorical label.
+    - Example: Fraud detection in bank transactions.
+    - **Binary classification:** Two possible outcomes (e.g., fraudulent or not fraudulent).
+- **Regression:** Predicts continuous values.
+    - Example: Predicting house prices based on number of bedrooms and size.
+
+#### 6. Naming Conventions
+
+- **Feature** (also called: predictor variable, independent variable).
+- **Target Variable** (also called: dependent variable, response variable).
+
+#### 7. Pre-requisites for Supervised Learning
+
+- Data requirements:
+    - No missing values.
+    - Numeric format.
+    - Stored as pandas **DataFrames**, **Series**, or **NumPy arrays**.
+- **Exploratory Data Analysis (EDA)**
+    - Ensure data is in the correct format.
+    - Use pandas methods for descriptive statistics and data visualizations.
+
+#### 8. scikit-learn Syntax & Workflow
+
+- **Consistent syntax** across all supervised learning models.
+- **Workflow steps:**
+    1. **Import** a model from an `sklearn` module.
+        - Example: `k-Nearest Neighbors (k-NN)` uses distance to predict labels or values.
+    2. **Instantiate** the model as a variable.
+    3. **Fit** the model to the data:
+        - `X` (features) and `y` (target variable values).
+    4. **Make predictions** using `.predict(X_new)`.
+        - Example: Predict spam emails using six new email observations.
+        - **Output:** `1` (spam) or `0` (not spam).
+    ```
+        - from sklearn.module import Model
+        - model = Model()
+        - model.fit(X,y)
+        - predictions = model.predict(X_new)
+        - print(predictions)
+    ```
+
